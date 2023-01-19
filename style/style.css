@@ -1,3 +1,9 @@
 body {
   background-color: rgb(211, 255, 240);
+}
+
+.img-card {
+  border-radius: 20px;
+  border: solid;
+  width: 466px;
 }/*# sourceMappingURL=style.css.map */

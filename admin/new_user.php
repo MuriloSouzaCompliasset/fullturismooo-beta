@@ -17,7 +17,7 @@
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-          <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-5 d-none d-sm-inline">Menu</span>
           </a>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -50,24 +50,24 @@
       <div class="col py-3">
 
         <!-- Valor dentro da sidebra -->
-        <a href="roteiro.php" class="btn btn-danger">Cancelar</a>
+        <a href="user.php" class="btn btn-danger">Cancelar</a>
 
         <form class="row g-3 mt-5">
           <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Nome do Roteiro</label>
-            <input type="txt" class="form-control" id="inputEmail4">
+            <label for="inputEmail4" class="form-label">Nome do Usuário</label>
+            <input type="text" class="form-control" id="inputEmail4">
           </div>
           <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Descrição</label>
-            <input type="txt" class="form-control" id="inputPassword4">
+            <label for="inputPassword4" class="form-label">Email</label>
+            <input type="text" class="form-control" id="inputPassword4">
           </div>
           <div class="col-12">
-            <label for="inputAddress" class="form-label">Localização</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            <label for="inputAddress" class="form-label">Senha</label>
+            <input type="text" class="form-control" id="inputAddress" >
           </div>
           <div class="col-12">
             <label for="inputAddress2" class="form-label">Foto</label>
-            <input type="file" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+            <input type="file" class="form-control" id="inputAddress2" >
           </div>
           <div class="col-md-6">
             <label for="inputCity" class="form-label">Valor Estimado</label>

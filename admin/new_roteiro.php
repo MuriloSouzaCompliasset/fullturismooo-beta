@@ -1,9 +1,14 @@
 <?php
 
-include_once('../database.php');
+include('../database.php');
+
+if (isset($_POST['send'])) {
+  $prep = mysqli_prepare($conecta,"INSERT INTO itinerarys (name, description) VALUES (?, ?);");
+  $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
+  $prep->execute();
+}
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -60,14 +65,14 @@ include_once('../database.php');
         <!-- Valor dentro da sidebra -->
         <a href="roteiro.php" class="btn btn-danger">Cancelar</a>
 
-        <form class="row g-3 mt-5">
+        <form class="row g-3 mt-5" method="post">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Nome do Roteiro</label>
-            <input type="txt" class="form-control" id="inputEmail4">
+            <input type="txt" class="form-control" name="name">
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Descrição</label>
-            <input type="txt" class="form-control" id="inputPassword4">
+            <input type="txt" class="form-control" name="description">
           </div>
           <div class="col-12">
             <label for="inputAddress" class="form-label">Localização</label>
@@ -79,7 +84,7 @@ include_once('../database.php');
           </div>
           <div class="col-md-6">
             <label for="inputCity" class="form-label">Valor Estimado</label>
-            <input type="text" class="form-control"  id="inputCity">
+            <input type="text" class="form-control" id="inputCity">
           </div>
           <div class="col-md-4">
             <label for="inputState" class="form-label">State</label>
@@ -101,7 +106,7 @@ include_once('../database.php');
             </div>
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary" name="send">Criar</button>
           </div>
         </form>
 

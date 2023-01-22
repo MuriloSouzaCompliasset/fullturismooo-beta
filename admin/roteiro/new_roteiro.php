@@ -1,17 +1,29 @@
 <?php
 
-include('../database.php');
+include('../../database.php');
+if (isset($_POST['send'])) {
 
-if (base64_decode($_GET['ref'])=='new') {
+  if (base64_decode($_GET['ref']) == 'new') {
 
-  if (isset($_POST['send'])) {
     $prep = mysqli_prepare($conecta, "INSERT INTO itinerarys (name, description) VALUES (?, ?);");
     $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
     $prep->execute();
+  } else {
+    $prep = mysqli_prepare($conecta, "UPDATE itinerarys SET name=?, description=?");
+    $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
+    $prep->execute();
+  }
+  header('Location: ./roteiro.php');
+}
+if (!empty($_GET["id"])) {
+  $select = mysqli_query($conecta, "SELECT * FROM itinerarys WHERE id = " . base64_decode($_GET["id"]));
+  if (mysqli_num_rows($select) == 0) {
+    header('Location: roteiros.php');
+    exit;
+  } else {
+    $result = mysqli_fetch_assoc($select);
   }
 }
-
-echo ('deu ruim');
 ?>
 
 
@@ -34,7 +46,7 @@ echo ('deu ruim');
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-          <a href="../dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <a href="dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-5 d-none d-sm-inline">Menu</span>
           </a>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -44,7 +56,7 @@ echo ('deu ruim');
               </a>
             </li>
             <li>
-              <a href="../user/user.php" class="nav-link px-0 align-middle">
+              <a href="user/user.php" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Usuários</span></a>
             </li>
           </ul>
@@ -72,7 +84,8 @@ echo ('deu ruim');
         <form class="row g-3 mt-5" method="post">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Nome do Roteiro</label>
-            <input type="txt" class="form-control" name="name">
+            <input value="<?php echo $result["name"] ?>" type="txt" class="form-control" name="name">
+
           </div>
           <div class="col-3">
             <label for="inputAddress" class="form-label">Data de Início</label>

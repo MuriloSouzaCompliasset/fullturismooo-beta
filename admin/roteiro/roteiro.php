@@ -50,7 +50,7 @@
       <div class="col py-3">
 
         <!-- Valor dentro da sidebra -->
-        <a href="new_roteiro.php?ref=<?php base64_encode('new');?>" class="btn btn-primary">Criar</a>
+        <a href="new_roteiro.php?ref=<?php echo base64_encode('new'); ?>" class="btn btn-primary">Criar</a>
         <table class="table mt-5">
           <thead>
             <tr>
@@ -71,10 +71,8 @@
                   <td><?php echo $result['name'] ?></td>
                   <td><?php echo $result['description'] ?></td>
                   <td>
-                    <a href="new_roteiro.php?id=<?php echo base64_encode($result['id'])?>" class="btn btn-primary">Alterar</a>
-
-                    <li class="btn btn-primary"><a href="new_roteiro.php?id=<?php echo base64_encode($result['id']) ?>"></a>Alterar</li>
-                    <li class="btn btn-danger"><a href='javascript:void(0)' onclick="if (confirm('Confirma exclusão do item?')) { location.href='remover.php?id=<?php echo base64_encode($result['id']) ?>' }"><i class='icon-remove'></i></a>Remover</li>
+                    <a href="new_roteiro.php?id=<?php echo base64_encode($result['id']) ?>" class="btn btn-primary">Alterar</a>
+                    <a href='javascript:void(0)' onclick="if (confirm('Confirma exclusão do item?')) { location.href='destroy.php?id=<?php echo base64_encode($result['id']) ?>' }"class="btn btn-danger">Remover</a>
                   </td>
                 </tr>
               <?php } ?>

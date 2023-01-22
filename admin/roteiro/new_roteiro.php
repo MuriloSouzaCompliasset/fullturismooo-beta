@@ -2,12 +2,16 @@
 
 include('../database.php');
 
-if (isset($_POST['send'])) {
-  $prep = mysqli_prepare($conecta,"INSERT INTO itinerarys (name, description) VALUES (?, ?);");
-  $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
-  $prep->execute();
+if (base64_decode($_GET['ref'])=='new') {
+
+  if (isset($_POST['send'])) {
+    $prep = mysqli_prepare($conecta, "INSERT INTO itinerarys (name, description) VALUES (?, ?);");
+    $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
+    $prep->execute();
+  }
 }
 
+echo ('deu ruim');
 ?>
 
 
@@ -30,7 +34,7 @@ if (isset($_POST['send'])) {
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-          <a href="dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <a href="../dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-5 d-none d-sm-inline">Menu</span>
           </a>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -40,7 +44,7 @@ if (isset($_POST['send'])) {
               </a>
             </li>
             <li>
-              <a href="user.php" class="nav-link px-0 align-middle">
+              <a href="../user/user.php" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Usuários</span></a>
             </li>
           </ul>
@@ -70,28 +74,32 @@ if (isset($_POST['send'])) {
             <label for="inputEmail4" class="form-label">Nome do Roteiro</label>
             <input type="txt" class="form-control" name="name">
           </div>
+          <div class="col-3">
+            <label for="inputAddress" class="form-label">Data de Início</label>
+            <input type="date" class="form-control" name="date_start">
+          </div>
+          <div class="col-3">
+            <label for="inputAddress" class="form-label">Data Final</label>
+            <input type="date" class="form-control" name="date_end">
+          </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Descrição</label>
             <input type="txt" class="form-control" name="description">
           </div>
-          <div class="col-12">
-            <label for="inputAddress" class="form-label">Localização</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-          </div>
-          <div class="col-12">
-            <label for="inputAddress2" class="form-label">Foto</label>
-            <input type="file" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-          </div>
-          <div class="col-md-6">
-            <label for="inputCity" class="form-label">Valor Estimado</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
           <div class="col-md-4">
             <label for="inputState" class="form-label">State</label>
             <select id="inputState" class="form-select">
-              <option selected>Choose...</option>
-              <option>...</option>
+              <option selected>SP</option>
+              <option>AM</option>
             </select>
+          </div>
+          <div class="col-12">
+            <label for="inputAddress2" class="form-label">Foto</label>
+            <input type="file" class="form-control" name="img">
+          </div>
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">Valor Estimado</label>
+            <input type="text" class="form-control" name="value">
           </div>
           <div class="col-md-2">
             <label for="inputZip" class="form-label">Zip</label>

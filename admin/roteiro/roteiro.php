@@ -17,7 +17,7 @@
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-          <a href="dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <a href="../dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-5 d-none d-sm-inline">Menu</span>
           </a>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -27,7 +27,7 @@
               </a>
             </li>
             <li>
-              <a href="user.php" class="nav-link px-0 align-middle">
+              <a href="../user/user.php" class="nav-link px-0 align-middle">
                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Usuários</span></a>
             </li>
           </ul>
@@ -50,39 +50,39 @@
       <div class="col py-3">
 
         <!-- Valor dentro da sidebra -->
-        <a href="new_user.php" class="btn btn-primary">Criar</a>
+        <a href="new_roteiro.php?ref=<?php base64_encode('new');?>" class="btn btn-primary">Criar</a>
         <table class="table mt-5">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Opções</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            <?php
+            include('../../database.php');
+            $query = mysqli_query($conecta, "SELECT * FROM itinerarys ORDER BY name");
+            if (mysqli_num_rows($query) >= 1) {
+              while ($result = mysqli_fetch_assoc($query)) {
+            ?>
+
+                <tr>
+                  <td><?php echo $result['name'] ?></td>
+                  <td><?php echo $result['description'] ?></td>
+                  <td>
+                    <a href="new_roteiro.php?id=<?php echo base64_encode($result['id'])?>" class="btn btn-primary">Alterar</a>
+
+                    <li class="btn btn-primary"><a href="new_roteiro.php?id=<?php echo base64_encode($result['id']) ?>"></a>Alterar</li>
+                    <li class="btn btn-danger"><a href='javascript:void(0)' onclick="if (confirm('Confirma exclusão do item?')) { location.href='remover.php?id=<?php echo base64_encode($result['id']) ?>' }"><i class='icon-remove'></i></a>Remover</li>
+                  </td>
+                </tr>
+              <?php } ?>
+            <?php } ?>
           </tbody>
         </table>
 
         <!-- Fim do valor dentro da sidebra -->
-
       </div>
     </div>
   </div>

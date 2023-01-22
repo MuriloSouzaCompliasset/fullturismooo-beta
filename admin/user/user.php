@@ -17,12 +17,12 @@
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-          <a href="dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <a href="../dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-5 d-none d-sm-inline">Menu</span>
           </a>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
-              <a href="roteiro.php" class="nav-link align-middle px-0">
+              <a href="../roteiro/roteiro.php" class="nav-link align-middle px-0">
                 <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Roteiros</span>
               </a>
             </li>
@@ -50,52 +50,36 @@
       <div class="col py-3">
 
         <!-- Valor dentro da sidebra -->
-        <a href="user.php" class="btn btn-danger">Cancelar</a>
-
-        <form class="row g-3 mt-5">
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Nome do Usuário</label>
-            <input type="text" class="form-control" id="inputEmail4"> 
-          </div>
-          <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Email</label>
-            <input type="text" class="form-control" id="inputPassword4">
-          </div>
-          <div class="col-12">
-            <label for="inputAddress" class="form-label">Senha</label>
-            <input type="text" class="form-control" id="inputAddress" >
-          </div>
-          <div class="col-12">
-            <label for="inputAddress2" class="form-label">Foto</label>
-            <input type="file" class="form-control" id="inputAddress2" >
-          </div>
-          <div class="col-md-6">
-            <label for="inputCity" class="form-label">Valor Estimado</label>
-            <input type="text" class="form-control"  id="inputCity">
-          </div>
-          <div class="col-md-4">
-            <label for="inputState" class="form-label">State</label>
-            <select id="inputState" class="form-select">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <label for="inputZip" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck">
-              <label class="form-check-label" for="gridCheck">
-                Check me out
-              </label>
-            </div>
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </div>
-        </form>
+        <a href="new_user.php" class="btn btn-primary">Criar</a>
+        <table class="table mt-5">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
 
         <!-- Fim do valor dentro da sidebra -->
 

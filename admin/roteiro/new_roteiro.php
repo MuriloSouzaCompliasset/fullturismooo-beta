@@ -9,7 +9,7 @@ if (isset($_POST['send'])) {
     $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
     $prep->execute();
   } else {
-    $prep = mysqli_prepare($conecta, "UPDATE itinerarys SET name=?, description=?");
+    $prep = mysqli_prepare($conecta, "UPDATE itinerarys SET  name=?, description=?");
     $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
     $prep->execute();
   }
@@ -80,8 +80,8 @@ if (!empty($_GET["id"])) {
 
         <!-- Valor dentro da sidebra -->
         <a href="roteiro.php" class="btn btn-danger">Cancelar</a>
-
         <form class="row g-3 mt-5" method="post">
+          <input type="text" name="id" value="<?php echo $result["id"]?>">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Nome do Roteiro</label>
             <input value="<?php echo $result["name"] ?>" type="txt" class="form-control" name="name">
@@ -97,7 +97,7 @@ if (!empty($_GET["id"])) {
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Descrição</label>
-            <input type="txt" class="form-control" name="description">
+            <input value="<?php echo $result["description"] ?>" type="txt" class="form-control" name="description">
           </div>
           <div class="col-md-4">
             <label for="inputState" class="form-label">State</label>

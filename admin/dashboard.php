@@ -1,3 +1,7 @@
+<?php
+include('../database.php')
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,8 +60,12 @@
             <div class="card text-center">
               <div class="card-body text-center">
                 <h5 class="card-title text-center">Roteiros</h5>
-                <p class="card-text text-center"> 10</p>
-                <a href="#" class="btn btn-primary 5">Ver Roteiros</a>
+                <?php
+                  $queryitinerary = mysqli_query($conecta, "SELECT COUNT(id) AS TotalItinerary FROM itinerarys");
+                  $resultitinerary = mysqli_fetch_assoc($queryitinerary);
+                ?>
+                <p class="card-text text-center"> <?php echo str_pad($resultitinerary['TotalItinerary'],2 , 0, STR_PAD_LEFT)?></p>
+                <a href="roteiro/roteiro.php" class="btn btn-primary 5">Ver Roteiros</a>
               </div>
             </div>
           </div>

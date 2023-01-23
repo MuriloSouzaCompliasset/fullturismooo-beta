@@ -50,36 +50,36 @@
       <div class="col py-3">
 
         <!-- Valor dentro da sidebra -->
-        <a href="new_user.php" class="btn btn-primary">Criar</a>
+        <a href="new_user.php?ref=<?php echo base64_encode('new'); ?>" class="btn btn-primary">Criar</a>
         <table class="table mt-5">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Nome</th>
+              <th scope="col">email</th>
+              <th scope="col">Opções</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            <?php
+            include('../../database.php');
+            $query = mysqli_query($conecta, "SELECT * FROM users ORDER BY name");
+            if (mysqli_num_rows($query) >= 1) {
+              while ($result = mysqli_fetch_assoc($query)) {
+            ?>
+
+                <tr>
+                  <td><?php echo $result['name'] ?></td>
+                  <td><?php echo $result['email'] ?></td>
+                  <td>
+                    <a href="new_user.php?id=<?php echo base64_encode($result['id']) ?>" class="btn btn-primary">Alterar</a>
+                    <a href='javascript:void(0)' onclick="if (confirm('Confirma exclusão do item?')) { location.href='destroy.php?id=<?php echo base64_encode($result['id']) ?>' }"class="btn btn-danger">Remover</a>
+                  </td>
+                </tr>
+              <?php } ?>
+            <?php } ?>
           </tbody>
         </table>
+
 
         <!-- Fim do valor dentro da sidebra -->
 

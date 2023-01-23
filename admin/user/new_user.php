@@ -1,3 +1,35 @@
+<?php
+
+include('../../database.php');
+
+if (isset($_POST['send'])) {
+
+  if (base64_decode($_GET['ref']) == 'new') {
+
+    $prep = mysqli_prepare($conecta, "INSERT INTO users (name, email, password) VALUES (?, ?, ?);");
+    $prep->bind_param("sss", trim($_POST['name']), trim($_POST['email']), trim($_POST['password']));
+    $prep->execute();
+  } else {
+    $prep = mysqli_prepare($conecta, "UPDATE users SET name=?, email=?, password=? WHERE id = " . base64_decode($_GET["id"]));
+    $prep->bind_param("sss", trim($_POST['name']), trim($_POST['email']), trim($_POST['password']));
+    $prep->execute();
+    echo('alt');
+  }
+  header('Location: ./user.php');
+}
+if (!empty($_GET["id"])) {
+  $select = mysqli_query($conecta, "SELECT * FROM users WHERE id = " . base64_decode($_GET["id"]));
+  if (mysqli_num_rows($select) == 0) {
+    header('Location: user.php');
+    exit;
+  } else {
+    $result = mysqli_fetch_assoc($select);
+  }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,26 +84,27 @@
         <!-- Valor dentro da sidebra -->
         <a href="user.php" class="btn btn-danger">Cancelar</a>
 
-        <form class="row g-3 mt-5">
+        <form class="row g-3 mt-5" method="post">
+        <input type="text" name="id" value="<?php echo $result["id"] ?>">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Nome do Usuário</label>
-            <input type="text" class="form-control" id="inputEmail4"> 
+            <input value="<?php echo $result["name"] ?>" type="text" class="form-control" name="name">
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Email</label>
-            <input type="text" class="form-control" id="inputPassword4">
+            <input value="<?php echo $result["email"] ?>" type="text" class="form-control" name="email">
           </div>
           <div class="col-12">
             <label for="inputAddress" class="form-label">Senha</label>
-            <input type="text" class="form-control" id="inputAddress" >
+            <input value="<?php echo $result["password"] ?>" type="text" class="form-control" name="password">
           </div>
           <div class="col-12">
             <label for="inputAddress2" class="form-label">Foto</label>
-            <input type="file" class="form-control" id="inputAddress2" >
+            <input type="file" class="form-control" id="inputAddress2">
           </div>
           <div class="col-md-6">
             <label for="inputCity" class="form-label">Valor Estimado</label>
-            <input type="text" class="form-control"  id="inputCity">
+            <input type="text" class="form-control" id="inputCity">
           </div>
           <div class="col-md-4">
             <label for="inputState" class="form-label">State</label>
@@ -93,7 +126,7 @@
             </div>
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary" name="send">Criar</button>
           </div>
         </form>
 

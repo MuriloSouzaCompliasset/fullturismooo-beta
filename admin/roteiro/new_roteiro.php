@@ -81,7 +81,7 @@ if (!empty($_GET["id"])) {
         <!-- Valor dentro da sidebra -->
         <a href="roteiro.php" class="btn btn-danger">Cancelar</a>
         <form class="row g-3 mt-5" method="post">
-          <input type="text" name="id" value="<?php echo $result["id"]?>">
+          <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Nome do Roteiro</label>
             <input value="<?php echo $result["name"] ?>" type="txt" class="form-control" name="name">

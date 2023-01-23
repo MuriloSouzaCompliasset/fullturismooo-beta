@@ -102,7 +102,7 @@ if (isset($_POST['send'])) {
                     </div>
 
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" name="send" class="btn btn-primary btn-lg">Registrart</button>
+                      <button type="submit" name="send" class="btn btn-primary btn-lg">Registrar</button>
                     </div>
 
                   </form>

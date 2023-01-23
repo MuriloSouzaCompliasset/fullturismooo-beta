@@ -9,7 +9,7 @@ if (isset($_POST['send'])) {
     $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
     $prep->execute();
   } else {
-    $prep = mysqli_prepare($conecta, "UPDATE itinerarys SET  name=?, description=?");
+    $prep = mysqli_prepare($conecta, "UPDATE itinerarys SET name=?, description=?");
     $prep->bind_param("ss", trim($_POST['name']), trim($_POST['description']));
     $prep->execute();
   }

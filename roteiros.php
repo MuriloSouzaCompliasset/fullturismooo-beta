@@ -26,6 +26,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="roteiros.php">Roteiros</a>
           </li>
+          <li class="nav-item text-end">
+            <a class="nav-link active  btn btn-primary" aria-current="page" href="login.php">Login</a>
+          </li>
         </ul>
       </div>
     </div>

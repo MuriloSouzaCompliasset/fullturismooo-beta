@@ -1,5 +1,12 @@
 <?php
-include('../database.php')
+include('../database.php');
+$niveltela = 0;
+session_start();
+
+if (!isset($_SESSION['name'])) {
+  include('verifica.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,40 +26,10 @@ include('../database.php')
 <body>
   <div class="container-fluid">
     <div class="row flex-nowrap">
-      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-          <a href="dashboard.php" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-5 d-none d-sm-inline">Menu</span>
-          </a>
-          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-            <li class="nav-item">
-              <a href="roteiro/roteiro.php" class="nav-link align-middle px-0">
-                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Roteiros</span>
-              </a>
-            </li>
-            <li>
-              <a href="user/user.php" class="nav-link px-0 align-middle">
-                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Usuários</span></a>
-            </li>
-          </ul>
-          <hr>
-          <div class="dropdown pb-4">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="d-none d-sm-inline mx-1">Felipe</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col py-3">
 
+      <?php include('sidebar.php') ?>
+
+      <div class="col py-3">
         <!-- Valor dentro da sidebra -->
 
         <div class="row pt-5">
@@ -61,10 +38,10 @@ include('../database.php')
               <div class="card-body text-center">
                 <h5 class="card-title text-center">Roteiros</h5>
                 <?php
-                  $queryitinerary = mysqli_query($conecta, "SELECT COUNT(id) AS TotalItinerary FROM itinerarys");
-                  $resultitinerary = mysqli_fetch_assoc($queryitinerary);
+                $queryitinerary = mysqli_query($conecta, "SELECT COUNT(id) AS TotalItinerary FROM itinerarys");
+                $resultitinerary = mysqli_fetch_assoc($queryitinerary);
                 ?>
-                <p class="card-text text-center"> <?php echo str_pad($resultitinerary['TotalItinerary'],2 , 0, STR_PAD_LEFT)?></p>
+                <p class="card-text text-center"> <?php echo str_pad($resultitinerary['TotalItinerary'], 2, 0, STR_PAD_LEFT) ?></p>
                 <a href="roteiro/roteiro.php" class="btn btn-primary 5">Ver Roteiros</a>
               </div>
             </div>
@@ -74,10 +51,10 @@ include('../database.php')
               <div class="card-body text-center">
                 <h5 class="card-title text-center">Usuários</h5>
                 <?php
-                  $queryuser = mysqli_query($conecta, "SELECT COUNT(id) AS TotalUser FROM users");
-                  $resultuser = mysqli_fetch_assoc($queryuser);
+                $queryuser = mysqli_query($conecta, "SELECT COUNT(id) AS TotalUser FROM users");
+                $resultuser = mysqli_fetch_assoc($queryuser);
                 ?>
-                 <p class="card-text text-center"> <?php echo str_pad($resultuser['TotalUser'],2 , 0, STR_PAD_LEFT)?></p>
+                <p class="card-text text-center"> <?php echo str_pad($resultuser['TotalUser'], 2, 0, STR_PAD_LEFT) ?></p>
                 <a href="user/user.php" class="btn btn-primary text-center">Ver Usuários</a>
               </div>
             </div>

@@ -47,8 +47,16 @@ session_start();
                   <td><?php echo $result['name'] ?></td>
                   <td><?php echo $result['description'] ?></td>
                   <td>
-                    <a href="new_roteiro.php?id=<?php echo base64_encode($result['id']) ?>" class="btn btn-primary">Alterar</a>
-                    <a href='javascript:void(0)' onclick="if (confirm('Confirma exclusão do item?')) { location.href='destroy.php?id=<?php echo base64_encode($result['id']) ?>' }" class="btn btn-danger">Remover</a>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ações
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="new_roteiro.php?id=<?php echo base64_encode($result['id']) ?>" class="btn btn-primary">Alterar</a></li>
+                        <li><a href='javascript:void(0)' onclick="if (confirm('Confirma exclusão do item?')) { location.href='destroy.php?id=<?php echo base64_encode($result['id']) ?>' }" class="btn btn-danger">Remover</a></li>
+                        <li><a href="show.php?id=<?php echo base64_encode($result['id']) ?>" class="btn btn-primary">Ver</a></li>
+                      </ul>
+                    </div>
                   </td>
                 </tr>
               <?php } ?>

@@ -18,7 +18,7 @@ if (isset($_POST['send'])) {
           if($result['is_admin'] == 1){
             header('location: admin/dashboard.php');
           }else{
-            header('location: user_web.php');
+            header('location: web/user_web.php');
           }
         exit;
       } else {

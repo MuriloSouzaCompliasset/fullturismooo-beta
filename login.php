@@ -1,3 +1,10 @@
+<?php
+
+$niveltela=0;
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,24 +23,7 @@
 <body>
 
   <!-- NavBar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">FullTurismo</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="roteiros.php">Roteiros</a>
-          </li>
-          <li class="nav-item text-end">
-            <a class="nav-link active btn btn-primary" aria-current="page" href="login.php">Login</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <?php include('partions/navbar.php') ?>
   <!-- Fim da NavBar -->
 
   <section class="vh-100 mt-5">
@@ -43,22 +33,23 @@
           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form action="autentica.php" method="post">
+          <form action="autentica.php" method="post">
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <label class="form-label" >Email</label>
+              <label class="form-label">Email</label>
               <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter a valid email address" />
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-3">
-              <label class="form-label" >Senha</label>
+              <label class="form-label">Senha</label>
               <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" />
             </div>
 
 
             <div class="text-center text-lg-start mt-4 pt-2">
               <button name="send" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+              <p class="small fw-bold mt-2 pt-1 mb-0">Não tem uma conta? <a href="register.php" class="link-danger">Cadastre-se</a></p>
             </div>
 
           </form>

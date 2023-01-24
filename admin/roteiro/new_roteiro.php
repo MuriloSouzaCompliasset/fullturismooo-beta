@@ -58,57 +58,83 @@ if (!empty($_GET["id"])) {
     <div class="row flex-nowrap">
       <?php include('../sidebar.php') ?>
       <div class="col py-3">
-
         <!-- Valor dentro da sidebra -->
-        <a href="roteiro.php" class="btn btn-danger">Cancelar</a>
-        <form class="row g-3 mt-5" method="post" enctype="multipart/form-data">
+        <form class=" g-3 mt-5" method="post" enctype="multipart/form-data">
           <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Nome do Roteiro</label>
-            <input value="<?php echo $result["name"] ?>" type="txt" class="form-control" name="name">
-
-          </div>
-          <div class="col-3">
-            <label for="inputAddress" class="form-label">Data de Início</label>
-            <input type="date" class="form-control" name="date_start">
-          </div>
-          <div class="col-3">
-            <label for="inputAddress" class="form-label">Data Final</label>
-            <input type="date" class="form-control" name="date_end">
-          </div>
-          <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Descrição</label>
-            <input value="<?php echo $result["description"] ?>" type="txt" class="form-control" name="description">
-          </div>
-          <div class="col-md-4">
-            <label for="inputState" class="form-label">State</label>
-            <select id="inputState" class="form-select">
-              <option selected>SP</option>
-              <option>AM</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <label class="form-label">Foto</label>
-            <input type="file" class="form-control" name="img">
-            <input type="hidden" class="form-control" name="oldImg" value="<?php echo $result["img"] ?>">
-          </div>
-          <div class="col-md-6">
-            <label for="inputCity" class="form-label">Valor Estimado</label>
-            <input type="text" class="form-control" name="value">
-          </div>
-          <div class="col-md-2">
-            <label for="inputZip" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck">
-              <label class="form-check-label" for="gridCheck">
-                Check me out
-              </label>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Nome do Roteiro</label>
+              <input value="<?php echo $result["name"] ?>" type="text" class="form-control" name="name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Foto</label>
+              <input type="file" class="form-control" name="img" id="imgNew" accept="image/jpeg, image/png, image/jpg">
+              <img id="imgShow" style="max-width: 500px;">
+              <input type="hidden" class="form-control" name="oldImg" value="<?php echo $result["img"] ?>">
             </div>
           </div>
-          <div class="col-12">
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Descrição Resumida</label>
+              <input class="form-control" maxlength="300" name="description"><?php echo $result["description"] ?>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Descrição</label>
+              <textarea class="form-control" maxlength="300" name="description"><?php echo $result["description"] ?></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-2">
+              <label for="inputAddress" class="form-label">Data de Início</label>
+              <input type="date" class="form-control" name="date_start">
+            </div>
+            <div class="col-2">
+              <label for="inputAddress" class="form-label">Data Final</label>
+              <input type="date" class="form-control" name="date_end">
+            </div>
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">Cidade</label>
+              <select id="inputState" class="form-select">
+                <option selected>SP</option>
+                <option>AM</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">Estado</label>
+              <select id="inputState" class="form-select">
+                <option selected>SP</option>
+                <option>AM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">Valor Estimado</label>
+              <input type="text" class="form-control" name="value">
+            </div>
+            <div class="col-md-2">
+              <label for="inputZip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-md-4 d-flex align-items-sm-center mt-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                  Lançamento
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mt-5">
+            <a href="roteiro.php" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary" name="send">Criar</button>
           </div>
         </form>
@@ -119,5 +145,15 @@ if (!empty($_GET["id"])) {
     </div>
   </div>
 </body>
+
+<script>
+  imgNew.onchange = evt => {
+    var output = document.getElementById('imgShow');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src)
+    }
+  };
+</script>
 
 </html>

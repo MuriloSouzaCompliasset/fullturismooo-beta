@@ -36,16 +36,16 @@ $decode = base64_decode($_GET['id']);
 
 <?php   
 
-  $buscaitinerary = mysqli_query($conecta, "SELECT itinerarys.* FROM users_itineraryes ui INNER JOIN itinerarys i ON i.id = ui.id_itinerary WHERE ui.id_user = ".$decode);
-  if(mysqli_num_rows($buscaitinerary)>=1){
+  $buscaitinerary = mysqli_query($conecta, "SELECT i.* FROM users_itineraryes ui INNER JOIN itinerarys i ON i.id = ui.id_itinerary WHERE ui.id_user = ".$decode);
+  var_dump($buscaitinerary);
+  ini_set('display_errors', 1);
+  if($buscaitinerary && mysqli_num_rows($buscaitinerary) >= 1){
     while($resultitinerary = mysqli_fetch_assoc($buscaitinerary)){
 ?>
 
-usuario <br>
-<?php echo $resultitinerary['id_user'] ?>
-<br>
+
 roteiro <br>
-<?php echo $resultitinerary['id_itinerary'] ?>
+<?php echo $resultitinerary['name'] ?>
 <br>
 
 

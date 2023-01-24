@@ -10,6 +10,7 @@ if (isset($_POST['send']))
   $prep = mysqli_prepare($conecta, "INSERT INTO users (name, email, password) VALUES (?, ?, ?);");
   $prep->bind_param("sss", trim($_POST['name']), trim($_POST['email']), trim($_POST['password']));
   $prep->execute();
+  header('location: login.php');
 }
 
 ?>

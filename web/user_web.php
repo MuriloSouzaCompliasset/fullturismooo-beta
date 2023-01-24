@@ -3,6 +3,10 @@
 $niveltela=1;
 session_start();
 
+
+if (!isset($_SESSION['name'])) {
+  include('../verifica.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

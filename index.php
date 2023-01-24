@@ -1,6 +1,6 @@
 <?php
 
-$niveltela=0;
+$niveltela = 0;
 session_start();
 
 ?>
@@ -22,12 +22,12 @@ session_start();
 <body>
 
   <!-- NavBar -->
- 
+  <?php include('partions/navbar.php') ?>
   <!-- Fim da NavBar -->
 
   <!-- banner -->
   <div class="container-fluid bg-white text-center" style="height: 400px;">
-      <h1 class=" d-flex justify-content-center" style="padding-top: 10rem;" >O Mundo em só clique</h1> 
+    <h1 class=" d-flex justify-content-center" style="padding-top: 10rem;">O Mundo em só clique</h1>
   </div>
   <!-- Fim do Banner -->
 

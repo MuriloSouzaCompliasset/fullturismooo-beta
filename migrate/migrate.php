@@ -47,7 +47,6 @@ $sqltb = "CREATE TABLE `$dbname`.`$tbtwo` (
   `img` VARCHAR(100) NULL,
   `date_start` VARCHAR(100) NULL,
   `date_end` VARCHAR(100) NULL,
-
   PRIMARY KEY (`id`));";
 if ($conect->query($sqltb) === TRUE) {
     echo "$tbtwo criada com sucesso";
@@ -62,6 +61,8 @@ $sqltb = "CREATE TABLE `$dbname`.`$tbthree` (
     `name` VARCHAR(45) NULL,
     `email` VARCHAR(100) NULL,
     `password` VARCHAR(100) NULL,
+    `img` VARCHAR(100) NULL,
+    `is_admin` VARCHAR (2) NULL,
     PRIMARY KEY (`id`));";
   if ($conect->query($sqltb) === TRUE) {
       echo "$tbthree criada com sucesso";
@@ -72,7 +73,7 @@ $sqltb = "CREATE TABLE `$dbname`.`$tbthree` (
   $sqltb = "CREATE TABLE `$dbname`.`$tbfour` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `id_user` VARCHAR(45) NULL,
-    `id_itinerary` VARCHAR(100) NULL,
+    `id_itinerary` INT NULL,
     PRIMARY KEY (`id`));";
   if ($conect->query($sqltb) === TRUE) {
       echo "$tbfour criada com sucesso";

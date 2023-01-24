@@ -27,7 +27,9 @@ mysqli_query($conect, "INSERT INTO $tbtwo (id, name, description, img, date_star
 echo "<\n>";
 //users seed
 echo "Fazendo seed na tabela $tbthree";
-mysqli_query($conect, "INSERT INTO $tbthree (id, name, email, password) VALUES ('1', 'Felipe', 'f@gmail.com', '123')");
+mysqli_query($conect, "INSERT INTO $tbthree (id, name, email, password, is_admin) VALUES ('1', 'admin', 'admin@gmail.com', '123', '1')");
+mysqli_query($conect, "INSERT INTO $tbthree (id, name, email, password, is_admin) VALUES ('2', 'felipe', 'f@gmail.com', '123', '')");
+
 echo "<\n>";
 
 
